@@ -1,5 +1,5 @@
-activate-epel
-=============
+subscribe-repos
+===============
 
 This playbook configures are RHEL server to receive its updates from a reposync server.
 On your reposync server register the server against RHN and then run the following script as a cron job:
