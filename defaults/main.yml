@@ -1,0 +1,6 @@
+---
+
+reposrvurl: http://packageserver.my.lan/repofiles/
+repo_reset: true
+repositories:
+                  - rhel-7-server-rpms

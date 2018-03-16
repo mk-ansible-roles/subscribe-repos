@@ -1,0 +1,36 @@
+---
+
+- name: ensure yum-config-manager is installed
+  yum:
+    name: yum-utils
+    state: present
+  ignore_errors: true
+
+- name: ensure all repositories are disabled
+  shell: |
+    if [ -x /usr/bin/yum-config-manager ]; then 
+      /usr/bin/yum-config-manager  --disable '*'
+    else
+      rm -f /etc/yum.repos.d/*.repo
+    fi
+  when: repo_reset == true 
+
+   
+- name: ensure repository files are loaded
+  get_url:
+    url: "{{ reposrvurl + item + '.repo' }}"
+    dest: /etc/yum.repos.d/{{ item }}.repo
+    mode: 0644
+    owner: root
+    group: root
+  with_items: "{{ repositories }} "
+
+- name: ensure repositories are enabled
+  shell: | 
+    if [ -x /usr/bin/yum-config-manager ]; then
+      /usr/bin/yum-config-manager  --enable  '{{ item }}'
+    else
+      sed -i -e "s/^enabled=/enabled=1/g" "{{ '/etc/yum.repos.d/' + item + '.repo' }}"
+    fi
+  with_items: "{{ repositories }} "
+
