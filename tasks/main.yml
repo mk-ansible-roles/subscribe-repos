@@ -30,7 +30,7 @@
     if [ -x /usr/bin/yum-config-manager ]; then
       /usr/bin/yum-config-manager  --enable  '{{ item }}'
     else
-      sed -i -e "s/^enabled=/enabled=1/g" "{{ '/etc/yum.repos.d/' + item + '.repo' }}"
+      sed -i -e "s/^enabled=.*/enabled=1/g" "{{ '/etc/yum.repos.d/' + item + '.repo' }}"
     fi
   with_items: "{{ repositories }} "
 
