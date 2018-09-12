@@ -23,6 +23,7 @@
     mode: 0644
     owner: root
     group: root
+    validate_certs: no
   with_items: "{{ repositories }} "
 
 - name: ensure repositories are enabled
