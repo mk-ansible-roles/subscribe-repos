@@ -1,10 +1,11 @@
 subscribe-repos
 ===============
 
-This playbook configures are RHEL server to receive its updates from a reposync server.
-On your reposync server register the server against RHN and then run the following script as a cron job:
+This playbook configures a RHEL server to receive its updates from a reposync server.
+On your reposync server register the server against RHN and then run the following script as a cron job (or use the setup-reposerver role):
 
 --8<-- snip -----
+
     #!/bin/bash
 
     SERVERIP=1.2.3.4 ## change me
