@@ -63,13 +63,13 @@ Use this to define the list of repositories you want to subscribe to
 Example Playbook
 ----------------
 
-Here is an example playbook that adds two disks in volumegroup vg00 and adds another one to the existing root volumegroup
+Here is an example playbook that adds two repositories on the clients (hosts in group `clients`) and disables all previously set repositories. The repository server that contain the repo files is set in `reposrvurl`
 
-    - hosts: servers
+    - hosts: clients
       remote_user: root
 
       vars:
-          reposrvurl: http://deploy.tom.lan/repofiles/
+          reposrvurl: http://myserver.lan/repofiles/
           repo_reset: true
           repositories:
                   - rhel-7-server-rpms
